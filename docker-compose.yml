@@ -1,0 +1,40 @@
+version: '3'
+services:
+  gottabuy-db:
+    container_name: gottabuy-db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME:-root}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-password}
+      POSTGRES_DB: ${DATABASE_NAME:-gottabuydb}
+    networks:
+      - gottabuy-net
+    volumes:
+      - db-data:/var/lib/dbdata
+  gottabuy-pgadmin:
+    container_name: gottabuy-pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - "6071:43251"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@admin.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin@admin}
+      PGADMIN_LISTEN_PORT: 43251
+    depends_on:
+      - gottabuy-db
+    networks:
+      - gottabuy-net
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+networks:
+  gottabuy-net:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
+  pgadmin:
+    driver: local
