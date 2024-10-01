@@ -1,8 +1,5 @@
-package com.bijanghanei.GottaBuy.model.dto;
+package com.bijanghanei.GottaBuy.model.dto.request;
 
-import com.bijanghanei.GottaBuy.model.entity.GottaBuyList;
-import com.bijanghanei.GottaBuy.model.entity.GottaBuyUser;
-import jakarta.persistence.OneToOne;
 import lombok.Builder;
 import lombok.Data;
 

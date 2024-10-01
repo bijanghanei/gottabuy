@@ -8,29 +8,28 @@ import org.springframework.web.bind.annotation.*;
 *
 */
 @RestController
-@RequestMapping("/products")
 public class GottaBuyProductController {
     // TODO : add new product
-    @PostMapping("/new")
+    @PostMapping("/products/new")
     public void create() {
 
     }
 
     // TODO : remove product
-    @GetMapping
+    @GetMapping("/products")
     public void get() {
 
     }
-    @GetMapping("/all")
+    @GetMapping("/products/all")
     public void getAll() {
 
     }
 
-    @PutMapping("/edit")
+    @PutMapping("/products/edit")
     public void edit() {
 
     }
-    @PostMapping("/remove")
+    @PostMapping("/products/remove")
     public void remove() {
 
     }

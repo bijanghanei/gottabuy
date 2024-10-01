@@ -1,6 +1,6 @@
 package com.bijanghanei.GottaBuy.service.user;
 
-import com.bijanghanei.GottaBuy.model.dto.GottaBuyUserDto;
+import com.bijanghanei.GottaBuy.model.dto.request.GottaBuyUserDto;
 import com.bijanghanei.GottaBuy.model.entity.GottaBuyUser;
 import com.bijanghanei.GottaBuy.repository.GottaBuyUserRepository;
 import com.bijanghanei.GottaBuy.service.common.AbstractService;
