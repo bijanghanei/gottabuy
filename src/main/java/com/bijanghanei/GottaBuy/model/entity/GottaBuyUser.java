@@ -21,7 +21,8 @@ public class GottaBuyUser {
     @OneToOne(mappedBy = "user")
     private GottaBuyList list;
     private long createdAt;
-    @OneToOne(mappedBy = "user")
+    @OneToOne
+    @JoinColumn(name = "gotta_buy_user_id")
     private GottaBuyUserDetails details;
 
     @Data
@@ -34,7 +35,7 @@ public class GottaBuyUser {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
         @OneToOne
-        @JoinColumn(name = "gotta_buy_user_id")
+        @JoinColumn(name = "gotta_buy_user_id",referencedColumnName = "id")
         private GottaBuyUser user;
         private String name;
         private long birthday;
