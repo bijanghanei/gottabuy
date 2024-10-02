@@ -1,12 +1,16 @@
 package com.bijanghanei.GottaBuy.security.jwt;
 
+import com.bijanghanei.GottaBuy.model.entity.GottaBuyUser;
+import com.bijanghanei.GottaBuy.repository.GottaBuyUserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.security.Keys;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -21,6 +25,8 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 public class JwtService {
+    @Autowired
+    private GottaBuyUserRepository userRepository;
     private final static int BEARER_LENGTH = 7;
     @Value("${spring.app.jwtSecret}")
     private String jwtSecret;
@@ -70,16 +76,18 @@ public class JwtService {
         }
         return false;
     }
-//    public String getJwtFromHeader(HttpServletRequest request) {
-//        String bearer = request.getHeader("Authorization");
-//        log.debug("Authorization header : {}", bearer);
-//        if (bearer == null || !bearer.startsWith("Bearer ")) {
-//            return null;
-//        }
-//        return bearer.substring(BEARER_LENGTH);
-//    }
-//    public boolean validateToken(String token) {
-//        Date expiration = this.getClaims(token).getExpiration();
-//        return expiration.after(Date.from(Instant.now()));
-//    }
+
+    public String getJwtFromHeader(HttpServletRequest request) {
+        String bearer = request.getHeader("Authorization");
+        log.debug("Authorization header : {}", bearer);
+        if (bearer == null || !bearer.startsWith("Bearer ")) {
+            return null;
+        }
+        return bearer.substring(BEARER_LENGTH);
+    }
+    public GottaBuyUser extractUser(HttpServletRequest request) {
+        String jwt = this.getJwtFromHeader(request);
+        String username = this.extractUsername(jwt);
+        return userRepository.findByUsername(username);
+    }
 }

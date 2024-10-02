@@ -16,9 +16,10 @@ public class GottaBuyList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne
+    private String title;
+    @ManyToOne
     @JoinColumn(name = "gotta_buy_user_id")
     private GottaBuyUser user;
-    @OneToMany(mappedBy = "list")
-    private List<Product> products;
+//    @OneToMany(mappedBy = "list", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<Product> products;
 }
