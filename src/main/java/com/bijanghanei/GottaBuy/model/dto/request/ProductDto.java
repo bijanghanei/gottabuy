@@ -13,6 +13,6 @@ public class ProductDto {
     private String title;
     private List<String> urls;
     private String description;
-    private ProductCategory category;
+    private String category;
     private double price;
 }
