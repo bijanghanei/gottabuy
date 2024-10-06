@@ -40,7 +40,7 @@ public class GottaBuyListController extends AbstractController<GottaBuyListServi
         return ResponseEntity.ok(updated);
     }
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/lists/remove")
+    @DeleteMapping("/lists/remove")
     public void remove(HttpServletRequest request, @RequestParam("listId") long listId) {
         service.delete(request,listId);
     }
