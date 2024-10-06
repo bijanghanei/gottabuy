@@ -48,7 +48,7 @@ public class GottaBuyProductController extends AbstractController<ProductService
         return ResponseEntity.ok(updated);
     }
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/products/remove")
+    @DeleteMapping("/products/remove")
     public void remove(HttpServletRequest request,@RequestParam("productId") long productId) {
         service.delete(request,productId);
     }
