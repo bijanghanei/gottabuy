@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @Entity
@@ -18,10 +20,11 @@ public class GottaBuyUser {
     private String username;
     private String password;
     private String email;
-    @OneToOne(mappedBy = "user")
-    private GottaBuyList list;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<GottaBuyList> lists;
     private long createdAt;
-    @OneToOne(mappedBy = "user")
+    @OneToOne
+    @JoinColumn(name = "gotta_buy_user_id")
     private GottaBuyUserDetails details;
 
     @Data
@@ -34,7 +37,7 @@ public class GottaBuyUser {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
         @OneToOne
-        @JoinColumn(name = "gotta_buy_user_id")
+        @JoinColumn(name = "gotta_buy_user_id",referencedColumnName = "id")
         private GottaBuyUser user;
         private String name;
         private long birthday;

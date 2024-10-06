@@ -1,4 +1,4 @@
-package com.bijanghanei.GottaBuy.model.dto;
+package com.bijanghanei.GottaBuy.model.dto.request;
 
 import com.bijanghanei.GottaBuy.model.ProductCategory;
 import com.bijanghanei.GottaBuy.model.entity.GottaBuyList;
@@ -13,6 +13,6 @@ public class ProductDto {
     private String title;
     private List<String> urls;
     private String description;
-    private ProductCategory category;
+    private String category;
     private double price;
 }
